@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="favoritos.length > 0; else vazio">
+    <app-produto-card
+      *ngFor="let produto of favoritos"
+      [produto]="produto"
+      [isFavorito]="true"
+      (favoritoChange)="removerFavorito(produto)">
+    </app-produto-card>
+  </ion-list>
+  <ng-template #vazio>
+    <ion-text color="medium">
+      <h2>Nenhum item nos favoritos.</h2>
+    </ion-text>
+  </ng-template>
+</ion-content>

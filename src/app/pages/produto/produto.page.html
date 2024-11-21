@@ -1,19 +1,19 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
     <ion-title>Produtos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let produto of produtos">
-      <ion-thumbnail slot="start">
-        <img [src]="produto.image" alt="Imagem do produto" />
-      </ion-thumbnail>
-      <ion-label>
-        <h2>{{ produto.title }}</h2>
-        <p>{{ produto.price | currency }}</p>
-      </ion-label>
-    </ion-item>
+    <app-produto-card
+      *ngFor="let produto of produtos"
+      [produto]="produto"
+      [isFavorito]="isFavorito(produto)"
+      (favoritoChange)="atualizarFavoritos(produto, $event)">
+    </app-produto-card>
   </ion-list>
 </ion-content>

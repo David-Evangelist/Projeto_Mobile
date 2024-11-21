@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-import { ProdutoPageRoutingModule } from './produto-routing.module';
-import { ProdutoPage } from './produto.page';
+import { FavoritosPageRoutingModule } from './favoritos-routing.module';
+import { FavoritosPage } from './favoritos.page';
+import { ProdutoCardComponent } from '../../componets/produto-card/produto-card.component';
 import { SharedModule } from '../../shared/shared.module'; // Importa o SharedModule
 
 @NgModule({
@@ -12,11 +13,12 @@ import { SharedModule } from '../../shared/shared.module'; // Importa o SharedMo
     CommonModule,
     FormsModule,
     IonicModule,
-    ProdutoPageRoutingModule,
-    SharedModule // Inclui o SharedModule
+    FavoritosPageRoutingModule,
+    SharedModule
+    
   ],
   declarations: [
-    ProdutoPage
+    FavoritosPage
   ]
 })
-export class ProdutoPageModule {}
+export class FavoritosPageModule {}

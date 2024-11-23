@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ProdutoCardComponent } from '../componets/produto-card/produto-card.component';
 
+
+
 @NgModule({
   declarations: [
     ProdutoCardComponent // Declara o componente

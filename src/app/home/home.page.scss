@@ -1,5 +1,5 @@
 ion-header{
-  --background : #8fb2a8; 
+  --background : #8fb2a8d0; 
   color: white;
   ion-title{
     font-size: 1.5rem;
@@ -10,13 +10,14 @@ ion-header{
 }
 
 ion-content {
-  --background-color: #7ab6af;
+  --ion-background-color: #0a685dd1;
   color: #333;
 }
 
 h2{
   font-size: 2rem;
-  color: #4a7c74;
+  color: white;
+
   margin-bottom: 1rem;
 }
 

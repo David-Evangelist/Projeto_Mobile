@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content>
+  
   <ion-list>
     <app-produto-card
       *ngFor="let produto of produtos"
@@ -16,4 +17,32 @@
       (favoritoChange)="atualizarFavoritos(produto, $event)">
     </app-produto-card>
   </ion-list>
+
+  <ion-toolbar>
+  <ion-item lines="nones">
+    <ion-label>Filtrar por categoria:</ion-label>
+    <ion-select [(ngModel)]="selectedCategory" (ionChange)="filtrarProdutos()" placeholder="Selecione uma categoria">
+      <ion-select-option *ngFor="let categoria of categorias" [value]="categoria">
+        {{ categoryNames[categoria] || categoria }}
+      </ion-select-option>
+    </ion-select>
+    <ion-button class="custom-button" *ngIf="selectedCategory" (click)="limparFiltro()" >Limpar</ion-button>
+  </ion-item>
+</ion-toolbar>
+
+  <ion-grid>
+    <ion-button expand="block" routerLink="/favoritos" hoverBackground>
+      Ver Favoritos
+    </ion-button>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let produto of produtosFiltrados">
+        <app-produto-card
+         [produto]="produto"
+         [isFavorito]="isFavorito(produto)"
+         (favoritoChange)="atualizarFavoritos(produto, $event)">
+        </app-produto-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

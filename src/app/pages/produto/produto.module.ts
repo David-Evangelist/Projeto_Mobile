@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
 import { ProdutoPageRoutingModule } from './produto-routing.module';
 import { ProdutoPage } from './produto.page';
 import { SharedModule } from '../../shared/shared.module'; // Importa o SharedModule
@@ -16,6 +15,7 @@ import { SharedModule } from '../../shared/shared.module'; // Importa o SharedMo
     SharedModule // Inclui o SharedModule
   ],
   declarations: [
+    ProdutoPage,
     ProdutoPage
   ]
 })

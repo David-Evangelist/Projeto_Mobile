@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritoService } from '../../services/favorito.service';
 
+
 @Component({
   selector: 'app-favoritos',
   templateUrl: './favoritos.page.html',
@@ -19,4 +20,5 @@ export class FavoritosPage implements OnInit {
     this.favoritoService.removeFavorito(produto);
     this.favoritos = this.favoritoService.getFavoritos(); // Atualiza a lista
   }
+
 }

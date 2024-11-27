@@ -23,3 +23,17 @@ ion-button {
   --background-activated: #3d695f;
   --color: white;
 }
+
+ion-menu {
+  --background: #f9f9f9; /* Cor de fundo do menu */
+}
+
+ion-toolbar {
+  --background: #4a7c74; /* Cor da barra superior */
+  --color: white;
+}
+
+ion-item {
+  --color: #4a7c74; /* Cor do texto no menu */
+  --color-activated: #3d695f;
+}

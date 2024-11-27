@@ -4,11 +4,14 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: any[], selectedCategory: string): any[] {
-    if (!items || !selectedCategory) {
+  transform(items: any[], category: string | null): any[] {
+    if (!items) {
+      return [];
+    }
+    if (!category) {
+      // Se category for null, retorna todos os itens
       return items;
     }
-
-    return items.filter(item => item.category === selectedCategory);
+    return items.filter(item => item.category === category);
   }
 }

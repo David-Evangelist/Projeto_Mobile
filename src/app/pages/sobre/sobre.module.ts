@@ -8,12 +8,15 @@ import { SobrePageRoutingModule } from './sobre-routing.module';
 
 import { SobrePage } from './sobre.page';
 
+import { SharedModule } from '../../shared/shared.module'; 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SobrePageRoutingModule
+    SobrePageRoutingModule,
+    SharedModule
   ],
   declarations: [SobrePage]
 })

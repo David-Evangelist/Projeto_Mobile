@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'produto',
     pathMatch: 'full'
   },
   {
@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'favoritos',
     loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+  },  {
+    path: 'meu-carrinho',
+    loadChildren: () => import('./pages/meu-carrinho/meu-carrinho.module').then( m => m.MeuCarrinhoPageModule)
   },
+
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+
 @Component({
   selector: 'app-produto-card',
   templateUrl: './produto-card.component.html',
@@ -19,5 +20,18 @@ export class ProdutoCardComponent {
   toggleFavorito() {
     this.isFavorito = !this.isFavorito;
     this.favoritoChange.emit(this.isFavorito);
+  }
+
+  adicionarAoCarrinho(produto: any) {
+    const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
+    if (!this.isNoCarrinho(produto)) {
+      carrinho.push(produto);
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    }
+  }
+
+  isNoCarrinho(produto: any): boolean {
+    const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
+    return carrinho.some((item: any) => item.id === produto.id);
   }
 }

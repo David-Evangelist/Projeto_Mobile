@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ProdutoService {
-  private apiUrl = 'https://fakestoreapi.com/products'; // URL da API Fake Store
+  private apiUrl = 'https://fakestoreapi.com/products';
 
   constructor(private http: HttpClient) {}
 

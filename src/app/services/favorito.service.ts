@@ -12,9 +12,10 @@ export class FavoritoService {
       const data = localStorage.getItem(this.FAVORITOS_KEY);
       this.favoritos = data ? JSON.parse(data) : [];
     } catch (error) {
-      console.error('Erro ao carregar favoritos do Local Storage:', error);
+      console.warn('LocalStorage inválido, redefinindo favoritos.', error);
       this.favoritos = [];
-    }
+      localStorage.removeItem(this.FAVORITOS_KEY);
+    }    
   }
 
   // Adicionar produto aos favoritos

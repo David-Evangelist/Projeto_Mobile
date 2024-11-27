@@ -6,3 +6,27 @@ ion-button {
   border-radius: 8px;
 }
   
+ion-buttons ion-icon {
+  font-size: 24px;
+  color: #4a7c74; /* Cor das 3 barrinhas */
+}
+
+ion-menu {
+  --background: #f9f9f9; /* Cor de fundo do menu */
+}
+
+ion-toolbar {
+  --background: #4a7c74; /* Cor da barra superior */
+  --color: white;
+}
+
+ion-item {
+  --color: #4a7c74; /* Cor do texto no menu */
+  --color-activated: #3d695f;
+}
+
+.filter-container {
+  --background: none;
+  margin-top: 15px;
+  font-weight: bold;
+}

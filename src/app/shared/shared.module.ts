@@ -1,24 +1,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { ProdutoCardComponent } from '../componets/produto-card/produto-card.component';
+
+import { ProdutoCardComponent } from '../components/produto-card/produto-card.component';
+import { CarrinhoItemComponent } from '../components/carrinho-item/carrinho-item.component';
+
+
 import { FilterPipe } from '../pipes/filter.pipe';
+
+import { HighlightButtonDirective } from '../directives/highlight-button.directive';
 
 @NgModule({
   declarations: [
-    ProdutoCardComponent,// Declara o componente
-    ProdutoCardComponent, 
-    FilterPipe // Declara o componente
+    ProdutoCardComponent,
+    CarrinhoItemComponent,
+    FilterPipe,
+    HighlightButtonDirective,
   ],
   imports: [
-    CommonModule, // Diretivas comuns do Angular
-    IonicModule   // Componentes do Ionic
+    CommonModule, 
+    IonicModule   
   ],
   exports: [
-    ProdutoCardComponent, // Torna o componente reutilizável em outros módulos
-    ProdutoCardComponent, 
-    FilterPipe // Torna o componente reutilizável em outros módulos
-
+    ProdutoCardComponent,
+    CarrinhoItemComponent,
+    FilterPipe, 
+    HighlightButtonDirective
+     
   ]
 })
 export class SharedModule {}

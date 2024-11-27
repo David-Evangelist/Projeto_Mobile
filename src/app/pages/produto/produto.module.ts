@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ProdutoPageRoutingModule } from './produto-routing.module';
 import { ProdutoPage } from './produto.page';
-import { SharedModule } from '../../shared/shared.module'; // Importa o SharedModule
+import { SharedModule } from '../../shared/shared.module'; 
 
 @NgModule({
   imports: [
@@ -12,10 +12,9 @@ import { SharedModule } from '../../shared/shared.module'; // Importa o SharedMo
     FormsModule,
     IonicModule,
     ProdutoPageRoutingModule,
-    SharedModule // Inclui o SharedModule
+    SharedModule 
   ],
   declarations: [
-    ProdutoPage,
     ProdutoPage
   ]
 })

@@ -7,54 +7,61 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [appLoading]="isLoading">
+  
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Carregando produtos...</p>
+  </div>
 
-  <ion-toolbar class="filter-container">
-    <ion-item lines="nones">
-      <ion-label>Filtrar por categoria:</ion-label>
-      <ion-select
-        [(ngModel)]="selectedCategory"
-        (ionChange)="filtrarProdutos()"
-        placeholder="Selecione uma categoria"
-      >
-        <ion-select-option
-          *ngFor="let categoria of categorias"
-          [value]="categoria"
+  <div *ngIf="!isLoading">
+    <ion-toolbar class="filter-container">
+      <ion-item lines="nones">
+        <ion-label>Filtrar por categoria:</ion-label>
+        <ion-select
+          [(ngModel)]="selectedCategory"
+          (ionChange)="filtrarProdutos()"
+          placeholder="Selecione uma categoria"
         >
-          {{ categoryNames[categoria] || categoria }}
-        </ion-select-option>
-      </ion-select>
-      <ion-button
-        class="custom-button"
-        *ngIf="selectedCategory"
-        (click)="limparFiltro()"
-        >Limpar</ion-button
-      >
-    </ion-item>
-  </ion-toolbar>
+          <ion-select-option
+            *ngFor="let categoria of categorias"
+            [value]="categoria"
+          >
+            {{ categoryNames[categoria] || categoria }}
+          </ion-select-option>
+        </ion-select>
+        <ion-button
+          class="custom-button"
+          *ngIf="selectedCategory"
+          (click)="limparFiltro()"
+          >Limpar</ion-button
+        >
+      </ion-item>
+    </ion-toolbar>
 
-  <ion-grid>
-    <!-- <ion-button expand="block" routerLink="/favoritos" hoverBackground>
+    <ion-grid>
+      <!-- <ion-button expand="block" routerLink="/favoritos" hoverBackground>
       Ver Favoritos
     </ion-button>
     <ion-button expand="block" routerLink="/meu-carrinho" hoverBackground>
       Ver Carrinho
     </ion-button> -->
 
-    <ion-row class="ion-justify-content-center">
-      <ion-col
-        size="12"
-        size-md="6"
-        size-lg="4"
-        *ngFor="let produto of produtos | filter: selectedCategory"
-      >
-        <app-produto-card
-          [produto]="produto"
-          [isFavorito]="isFavorito(produto)"
-          (favoritoChange)="atualizarFavoritos(produto, $event)"
+      <ion-row class="ion-justify-content-center">
+        <ion-col
+          size="12"
+          size-md="6"
+          size-lg="4"
+          *ngFor="let produto of produtos | filter: selectedCategory"
         >
-        </app-produto-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+          <app-produto-card
+            [produto]="produto"
+            [isFavorito]="isFavorito(produto)"
+            (favoritoChange)="atualizarFavoritos(produto, $event)"
+          >
+          </app-produto-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

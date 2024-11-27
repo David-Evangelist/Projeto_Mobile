@@ -1,3 +1,17 @@
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: var(--ion-color-primary);
+}
+
+.loading-container ion-spinner {
+  margin-bottom: 10px;
+}
+
 ion-button {
   --background: #4a7c74;
   --bacground-activated:#3d695f;

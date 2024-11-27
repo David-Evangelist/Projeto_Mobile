@@ -5,14 +5,16 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ProdutoService {
-  private apiUrl = 'https://fakestoreapi.com/products';
+  private baseUrl = 'https://fakestoreapi.com/products';
 
   constructor(private http: HttpClient) {}
 
-  // Método para buscar os produtos da API
-  getProdutos(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  getProdutos(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl);
+  }
+
+  getCategorias(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/categories`);
   }
 }

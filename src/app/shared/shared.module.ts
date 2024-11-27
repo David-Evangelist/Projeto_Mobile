@@ -5,10 +5,11 @@ import { IonicModule } from '@ionic/angular';
 import { ProdutoCardComponent } from '../components/produto-card/produto-card.component';
 import { CarrinhoItemComponent } from '../components/carrinho-item/carrinho-item.component';
 
-
 import { FilterPipe } from '../pipes/filter.pipe';
 
 import { HighlightButtonDirective } from '../directives/highlight-button.directive';
+
+import { LoadingDirective } from '../directives/loading.directive';
 
 @NgModule({
   declarations: [
@@ -16,17 +17,15 @@ import { HighlightButtonDirective } from '../directives/highlight-button.directi
     CarrinhoItemComponent,
     FilterPipe,
     HighlightButtonDirective,
+    LoadingDirective,
   ],
-  imports: [
-    CommonModule, 
-    IonicModule   
-  ],
+  imports: [CommonModule, IonicModule],
   exports: [
     ProdutoCardComponent,
     CarrinhoItemComponent,
-    FilterPipe, 
-    HighlightButtonDirective
-     
-  ]
+    FilterPipe,
+    HighlightButtonDirective,
+    LoadingDirective
+  ],
 })
 export class SharedModule {}

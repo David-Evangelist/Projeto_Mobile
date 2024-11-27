@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../../services/produto.service';
 import { FavoritoService } from '../../services/favorito.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.page.html',
   styleUrls: ['./produto.page.scss'],
 })
-
 export class ProdutoPage implements OnInit {
+  isLoading: boolean = true;
+
   categorias: string[] = []; // Guardará as categorias
   selectedCategory: string | null = null; // Categoria selecionada
   produtos: any[] = []; // Produtos completos
@@ -21,64 +21,53 @@ export class ProdutoPage implements OnInit {
     "women's clothing": 'Itens Femininos',
   };
 
- constructor(
-   private produtoService: ProdutoService,
-   private favoritoService: FavoritoService,
-   private http: HttpClient
-) {}
+  constructor(
+    private produtoService: ProdutoService,
+    private favoritoService: FavoritoService
+  ) {}
 
- ngOnInit() {
-   this.carregarCategorias();
-   this.carregarProdutos();
- }
+  ngOnInit() {
+    this.carregarCategorias();
+    this.carregarProdutos();
+  }
 
- carregarCategorias() {
-   this.http.get<string[]>('https://fakestoreapi.com/products/categories').subscribe(
-     (categorias) => {
-       this.categorias = categorias;
-     },
-     (error) => {
-       console.error('Erro ao carregar categorias:', error);
-     }
-   );
- }
+  carregarCategorias() {
+    this.produtoService.getCategorias().subscribe({
+      next: (categorias) => (this.categorias = categorias),
+      error: (error) => console.error('Erro ao carregar categorias:', error),
+    });
+  }
 
- carregarProdutos() {
-   this.http.get<any[]>('https://fakestoreapi.com/products').subscribe(
-    (produtos) => {
-       this.produtos = produtos;
-       this.produtosFiltrados = produtos; // Inicialmente exibe todos os produtos
-    },
-     (error) => {
-       console.error('Erro ao carregar produtos:', error);
-     }
-   );
- }
+  carregarProdutos() {
+    this.isLoading = true; // Ativa o loader
+    this.produtoService.getProdutos().subscribe({
+      next: (produtos) => {
+        this.produtos = produtos;
+        this.produtosFiltrados = produtos;
+      },
+      error: (error) => console.error('Erro ao carregar produtos:', error),
+      complete: () => (this.isLoading = false), // Desativa o loader
+    });
+  }
 
- isFavorito(produto: any): boolean {
-   return this.favoritoService.isFavorito(produto);
- }
+  filtrarProdutos() {
+    this.produtosFiltrados = this.selectedCategory
+      ? this.produtos.filter((produto) => produto.category === this.selectedCategory)
+      : [...this.produtos];
+  }
 
- atualizarFavoritos(produto: any, isFavorito: boolean) {
-   if (isFavorito) {
-     this.favoritoService.addFavorito(produto);
-   } else {
-     this.favoritoService.removeFavorito(produto);
-   }
- }
+  limparFiltro() {
+    this.selectedCategory = null;
+    this.produtosFiltrados = [...this.produtos];
+  }
 
-filtrarProdutos() {
-   if (!this.selectedCategory) {
-     this.produtosFiltrados = [...this.produtos]; // Mostra todos os produtos
-   } else {
-     this.produtosFiltrados = this.produtos.filter(
-       produto => produto.category === this.selectedCategory
-     );
-   }
- }
+  isFavorito(produto: any): boolean {
+    return this.favoritoService.isFavorito(produto);
+  }
 
- limparFiltro() {
-   this.selectedCategory = null; // Limpa a categoria selecionada
-   this.produtosFiltrados = [...this.produtos]; // Restaura a lista original de produtos
- }
+  atualizarFavoritos(produto: any, isFavorito: boolean) {
+    isFavorito
+      ? this.favoritoService.addFavorito(produto)
+      : this.favoritoService.removeFavorito(produto);
+  }
 }

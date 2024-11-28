@@ -7,7 +7,7 @@ export class HighlightButtonDirective {
   // Recebe a condição para alterar o estilo
   @Input('appHighlightButton') isActive: boolean = false;
 
-  // Aplica a cor de fundo dinamicamente
+  // Aplica a cor de fundo
   @HostBinding('style.backgroundColor') get backgroundColor(): string {
     return this.isActive ? 'lightgray' : '';
   }

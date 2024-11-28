@@ -18,7 +18,6 @@ export class FavoritoService {
     }    
   }
 
-  // Adicionar produto aos favoritos
   addFavorito(produto: any): void {
     if (!produto || !produto.id) {
       console.error('Produto inválido fornecido:', produto);
@@ -31,7 +30,6 @@ export class FavoritoService {
     }
   }
 
-  // Remover produto dos favoritos
   removeFavorito(produto: any): void {
     if (!produto || !produto.id) {
       console.error('Produto inválido fornecido:', produto);
@@ -52,7 +50,6 @@ export class FavoritoService {
     return this.favoritos;
   }
 
-  // Método privado para atualizar o Local Storage
   private atualizarLocalStorage(): void {
     try {
       localStorage.setItem(this.FAVORITOS_KEY, JSON.stringify(this.favoritos));

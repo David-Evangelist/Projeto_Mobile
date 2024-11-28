@@ -6,17 +6,13 @@ ion-button {
   border-radius: 8px;
 }
 
-ion-menu {
-  --background: #f9f9f9; /* Cor de fundo do menu */
-}
-
 ion-toolbar {
-  --background: #4a7c74; /* Cor da barra superior */
+  --background: #4a7c74;
   --color: white;
 }
 
 ion-item {
-  --color: #4a7c74; /* Cor do texto no menu */
+  --color: #4a7c74;
   --color-activated: #3d695f;
 }
 

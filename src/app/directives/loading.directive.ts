@@ -12,14 +12,19 @@ export class LoadingDirective {
     }
   }
 
+  @Input() spinnerColor: string = '#3880ff'; 
+  @Input() spinnerSize: string = '40px'; 
+
   private loaderElement: HTMLElement;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
     this.loaderElement = this.renderer.createElement('div');
     this.renderer.addClass(this.loaderElement, 'loading-container');
 
-    this.loaderElement.innerHTML = `
-      <ion-spinner name="crescent"></ion-spinner>
+    
+    this.loaderElement.innerHTML = 
+    `
+      <ion-spinner name="crescent" class="custom-spinner"></ion-spinner>
       <p>Carregando...</p>
     `;
 
@@ -31,6 +36,12 @@ export class LoadingDirective {
 
   private showLoader() {
     this.renderer.appendChild(this.el.nativeElement, this.loaderElement);
+
+    const spinner = this.loaderElement.querySelector('.custom-spinner') as HTMLElement;
+    if (spinner) {
+      this.renderer.setStyle(spinner, 'color', this.spinnerColor);
+      this.renderer.setStyle(spinner, 'font-size', this.spinnerSize);
+    }
   }
 
   private hideLoader() {

@@ -13,7 +13,6 @@ export class ProdutoPage implements OnInit {
   categorias: string[] = []; // Guardará as categorias
   selectedCategory: string | null = null; // Categoria selecionada
   produtos: any[] = []; // Produtos completos
-  produtosFiltrados: any[] = []; // Produtos filtrados
   categoryNames: { [key: string]: string } = {
     electronics: 'Eletrônicos',
     jewelery: 'Joias',
@@ -43,22 +42,14 @@ export class ProdutoPage implements OnInit {
     this.produtoService.getProdutos().subscribe({
       next: (produtos) => {
         this.produtos = produtos;
-        this.produtosFiltrados = produtos;
       },
       error: (error) => console.error('Erro ao carregar produtos:', error),
       complete: () => (this.isLoading = false), // Desativa o loader
     });
   }
 
-  filtrarProdutos() {
-    this.produtosFiltrados = this.selectedCategory
-      ? this.produtos.filter((produto) => produto.category === this.selectedCategory)
-      : [...this.produtos];
-  }
-
   limparFiltro() {
     this.selectedCategory = null;
-    this.produtosFiltrados = [...this.produtos];
   }
 
   isFavorito(produto: any): boolean {

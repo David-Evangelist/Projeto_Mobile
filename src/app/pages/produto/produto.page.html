@@ -8,7 +8,6 @@
 </ion-header>
 
 <ion-content [appLoading]="isLoading">
-  
   <div *ngIf="isLoading" class="loading-container">
     <ion-spinner name="crescent"></ion-spinner>
     <p>Carregando produtos...</p>
@@ -20,7 +19,6 @@
         <ion-label>Filtrar por categoria:</ion-label>
         <ion-select
           [(ngModel)]="selectedCategory"
-          (ionChange)="filtrarProdutos()"
           placeholder="Selecione uma categoria"
         >
           <ion-select-option
@@ -34,19 +32,13 @@
           class="custom-button"
           *ngIf="selectedCategory"
           (click)="limparFiltro()"
-          >Limpar</ion-button
         >
+          Limpar
+        </ion-button>
       </ion-item>
     </ion-toolbar>
 
     <ion-grid>
-      <!-- <ion-button expand="block" routerLink="/favoritos" hoverBackground>
-      Ver Favoritos
-    </ion-button>
-    <ion-button expand="block" routerLink="/meu-carrinho" hoverBackground>
-      Ver Carrinho
-    </ion-button> -->
-
       <ion-row class="ion-justify-content-center">
         <ion-col
           size="12"

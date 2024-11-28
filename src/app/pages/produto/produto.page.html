@@ -8,36 +8,31 @@
 </ion-header>
 
 <ion-content [appLoading]="isLoading">
-  <div *ngIf="isLoading" class="loading-container">
-    <ion-spinner name="crescent"></ion-spinner>
-    <p>Carregando produtos...</p>
-  </div>
+  <ion-toolbar class="filter-container">
+    <ion-item lines="nones">
+      <ion-label>Filtrar por categoria:</ion-label>
+      <ion-select
+        [(ngModel)]="selectedCategory"
+        placeholder="Selecione uma categoria"
+      >
+        <ion-select-option
+          *ngFor="let categoria of categorias"
+          [value]="categoria"
+        >
+          {{ categoryNames[categoria] || categoria }}
+        </ion-select-option>
+      </ion-select>
+      <ion-button
+        class="custom-button"
+        *ngIf="selectedCategory"
+        (click)="limparFiltro()"
+      >
+        Limpar
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
 
   <div *ngIf="!isLoading">
-    <ion-toolbar class="filter-container">
-      <ion-item lines="nones">
-        <ion-label>Filtrar por categoria:</ion-label>
-        <ion-select
-          [(ngModel)]="selectedCategory"
-          placeholder="Selecione uma categoria"
-        >
-          <ion-select-option
-            *ngFor="let categoria of categorias"
-            [value]="categoria"
-          >
-            {{ categoryNames[categoria] || categoria }}
-          </ion-select-option>
-        </ion-select>
-        <ion-button
-          class="custom-button"
-          *ngIf="selectedCategory"
-          (click)="limparFiltro()"
-        >
-          Limpar
-        </ion-button>
-      </ion-item>
-    </ion-toolbar>
-
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col
